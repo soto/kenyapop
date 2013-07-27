@@ -1,1 +1,3 @@
+# . run
+# open http://localhost:8000/kenyapop/
 python -m SimpleHTTPServer 8000
