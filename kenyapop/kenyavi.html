@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<p> hello </p>
+<div id="chartContainer">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v1.min.js"></script>
+  <script type="text/javascript">
+     var svg = dimple.newSvg("#chartContainer", 590, 400);
+    d3.tsv("/kenyapop/kenya-world.txt", function (data) {
+        var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 300)
+        var x = myChart.addCategoryAxis("x", "Year");
+        x.addOrderRule("Year");
+        //myChart.addMeasureAxis("y", ["Kenya","World"]);
+        myChart.addMeasureAxis("y", "World");
+        myChart.addMeasureAxis("y", "Kenya");
+        //myChart.addSeries(null, dimple.plot.bubble);
+       //myChart.addSeries("Year", dimple.plot.bubble);
+       //myChart.addSeries("Kenya");
+       //myChart.addSeries("World");
+       myChart.addSeries("Kenya");
+      //  myChart.addSeries(null, dimple.plot.bar);
+       // myChart.addLegend(180, 10, 360, 20, "right");
+        myChart.draw();
+      });
+
+  </script>
+</div>
+
+</body>
+</html>

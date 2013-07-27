@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<p> hello </p>
+<div id="chartContainer">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v1.min.js"></script>
+  <script type="text/javascript">
+     var svg = dimple.newSvg("#chartContainer", 590, 400);
+    d3.tsv("/kenyapop/kenya-world.txt", function (data) {
+        var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 300)
+        var x = myChart.addCategoryAxis("x", "Year");
+        x.addOrderRule("Date");
+        myChart.addMeasureAxis("y", "Population");
+        myChart.addSeries(null, dimple.plot.bubble);
+        myChart.addLegend(180, 10, 360, 20, "right");
+        myChart.draw();
+      });
+
+`
+    var svg = dimple.newSvg("#chartContainer", 590, 400);
+      //data = dimple.filterData(data, "Kenya", ["2012"] );
+      //data = dimple.filterData(data);
+      //data = dimple.getUniqueValues(data, "Kenya");
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(70, 30, 490, 310)
+      var x = myChart.addCategoryAxis("x", "Year");
+      x.addOrderRule("Year");
+      myChart.addMeasureAxis("y", "Population");
+//      myChart.addSeries("Kenya", dimple.plot.area);
+      myChart.addSeries("Kenya", dimple.plot.bubble);
+//      myChart.addSeries("The rest of the world", dimple.plot.area);
+      myChart.addLegend(60, 10, 500, 20, "right");
+      myChart.draw();
+    });
+  </script>
+</div>
+
+</body>
+</html>
